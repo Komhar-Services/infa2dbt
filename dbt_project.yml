@@ -41,9 +41,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  infa2dbt:
-    czc_src_cdc:
-      m_CDC_CC_USER:
-        +materialized: table
-        +schema: DBAALL
+  czc_src_cdc:
+    m_CDC_CC_USER:
+      +materialized: table
+      +schema: DBAALL
     
