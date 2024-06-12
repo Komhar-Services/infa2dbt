@@ -14,6 +14,7 @@ vars:
   tbl_tech_nm: 'WRK_ACTU_LRC_FINC_CMPNT_EXTRACT'
   ml_finc_prd: '2023'
   dbownerwrk: 'znawwrkdb'
+  seq_acct_anchr_id: '100'
 
 
 # This setting configures which "profile" dbt uses for this project.

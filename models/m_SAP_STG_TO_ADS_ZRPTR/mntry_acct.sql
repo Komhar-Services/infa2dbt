@@ -389,7 +389,7 @@ sq_stg_sap_dtl_y_rec as (
         and b.etl_proc_ind = 'N'
         and trim(b.reins_not_fnd_err) = '000'  -- Added for CR 12221 on 11/10/2013
         and trim(b.inv_doc_typ_err) <> '066'  -- Added for CR 17802
-        and trim(b.inv_acct_err) <> '065'  -- Added for CR 17802),
+        and trim(b.inv_acct_err) <> '065'  -- Added for CR 17802)
 r_exp_set_audit_cols1 as (
     select
         ent_usr_nm as in_dummy,
