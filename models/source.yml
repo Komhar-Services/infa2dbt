@@ -1,10 +1,13 @@
 version: 2
 sources:
   - name: cdc
+    database: infa2dbt
     schema: cdc
     tables:
       - name: dbo_cc_user_ct
   - name: dbaall
+    database: infa2dbt
     schema: dbaall
     tables:
       - name: work_prcg_cyc_dt
+      - name: cc_user
