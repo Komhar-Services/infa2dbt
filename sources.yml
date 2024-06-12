@@ -1,0 +1,10 @@
+version: 2
+sources:
+  - name: cdc
+    schema: cdc
+    tables:
+      - name: dbo_cc_user_ct
+  - name: dbaall
+    schema: dbaall
+    tables:
+      - name: work_prcg_cyc_dt
