@@ -1,5 +1,16 @@
-
-{{ config(materialized="incremental") }}
+{{ config(
+    alias="cdc_cc_user",
+    materialized="incremental",
+    post_hook=[{"sql": "UPDATE {{ this }} AS TGT
+                SET LTST_REC_IND = 'N'
+                WHERE TGT.ID IN (SELECT ID FROM {{ this }} AS SRC
+                                  WHERE TGT.ID = SRC.ID 
+                                  AND SRC.BAT_ID = {{ var('batch_id') }} 
+                                  AND SRC.LTST_REC_IND = 'Y') 
+                AND TGT.BAT_ID <> {{ var('batch_id') }} 
+                AND TGT.LTST_REC_IND = 'Y';"}]
+    ) 
+}}
 with
     r_ulkp_wpcd_eff_fm_tistmp as (select * from {{ ref("r_ulkp_wpcd_eff_fm_tistmp") }}),
     cc_user as (select * from {{ source("dbaall", "cc_user") }}),
@@ -12,47 +23,48 @@ with
                 group by urs.id
             )
         select
-            ltrim(rtrim(externaluser)),
+            ltrim(rtrim(externaluser)) as externaluser,
             validationlevel,
             retired,
             organizationid,
             vacationstatus,
-            ltrim(rtrim(publicid)),
+            ltrim(rtrim(publicid)) as publicid,
             createuserid,
             credentialid,
             usr.id,
             beanversion,
             timezone,
-            ltrim(rtrim(department)),
+            ltrim(rtrim(department)) department,
             updateuserid,
             policytype,
-            null as integerext,  -- modified as part of CR#5301
+            null::NUMBER(38,0) as integerext,  -- modified as part of CR#5301
             usersettingsid,
             loadcommandid,
             contactid,
             authorityprofileid,
             updatetime,
-            ltrim(rtrim(authoritycomments)),
+            ltrim(rtrim(authoritycomments)) as authoritycomments,
             experiencelevel,
-            ltrim(rtrim(basiccomments)),
+            ltrim(rtrim(basiccomments)) as basiccomments,
             quickclaim,
             createtime,
             losstype,
             systemusertype,
             language,
             newlyassignedactivities,
-            ltrim(rtrim(jobtitle)),
+            ltrim(rtrim(jobtitle)) as jobtitle,
             offsetstatsupdatetime,
             z_specialhandlertype,
             z_accountid,
-            claimorgid
+            claimorgid,
+            row_number() over (order by null) rn
         from cc_user usr
         inner join
             latest_id_record lir
             on lir.id = usr.id
             and lir.max_snpsht_tistmp = usr.snapshot_date
         where usr.snapshot_date > '{{ var("czc_startdate") }}'
-    ),
+    )    ,
     r_exp_audit_cols_czc_cdc as (
         select
             externaluser as in_dummy,
@@ -63,15 +75,16 @@ with
             r_ulkp_wpcd_eff_fm_tistmp_1.mntry_end_prcg_tistmp as out_eff_fm_tistmp,
             -- *INF*: TO_DATE('2999-12-31-00.00.00.000000', 'YYYY-MM-DD HH24:MI:SS NS')
             to_timestamp(
-                '2999-12-31-00.00.00.000000', 'YYYY-MM-DD HH24:MI:SS NS'
+                '2999-12-31 00:00:00.000000', 'YYYY-MM-DD HH24:MI:SS.FF6'
             ) as out_eff_to_tistmp,
-            'Y' as out_ltst_rec_ind
+            'Y' as out_ltst_rec_ind,
+            rn
         from sq_cc_user
         left join
             r_ulkp_wpcd_eff_fm_tistmp r_ulkp_wpcd_eff_fm_tistmp_1
             on r_ulkp_wpcd_eff_fm_tistmp_1.dummy = 1
 
-    ),
+    )
 select
     sq_cc_user.externaluser as externaluser,
     sq_cc_user.validationlevel as validationlevel,
@@ -114,3 +127,4 @@ select
     r_exp_audit_cols_czc_cdc.out_eff_to_tistmp as eff_to_tistmp,
     r_exp_audit_cols_czc_cdc.out_ltst_rec_ind as ltst_rec_ind
 from sq_cc_user
+inner join r_exp_audit_cols_czc_cdc using (rn)

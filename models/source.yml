@@ -11,3 +11,7 @@ sources:
     tables:
       - name: work_prcg_cyc_dt
       - name: cc_user
+      - name: wrk_fctr_tlrnc
+      - name: wrk_actu_lrc_cl_lkd_yc_intr_accrtn_fctr
+      - name: wrk_ifrs_lrc_ffaa_pol_lvl_calc
+      - name: wrk_ifrs_fctr_typ
