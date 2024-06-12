@@ -10,6 +10,7 @@ vars:
   czc_startdate : '2024-01-01 00:00:00'
   pop_info_id :  '101' 
   batch_id   :   '301'
+  dbownerprst: 'infa2dbt'
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'infa2dbt'
@@ -43,6 +44,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   czc_src_cdc:
     m_CDC_CC_USER:
+      +database: infa2dbt
       +materialized: table
       +schema: DBAALL
     

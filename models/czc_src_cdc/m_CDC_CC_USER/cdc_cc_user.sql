@@ -1,9 +1,9 @@
 {{ config(
     alias="cdc_cc_user",
     materialized="incremental",
-    post_hook=[{"sql": "UPDATE {{ this }} AS TGT
+    post_hook=[{"sql": "UPDATE {{ var('dbownerprst') }}.dbaall.CDC_CC_USER  AS TGT
                 SET LTST_REC_IND = 'N'
-                WHERE TGT.ID IN (SELECT ID FROM {{ this }} AS SRC
+                WHERE TGT.ID IN (SELECT ID FROM {{ var('dbownerprst') }}.dbaall.CDC_CC_USER AS SRC
                                   WHERE TGT.ID = SRC.ID 
                                   AND SRC.BAT_ID = {{ var('batch_id') }} 
                                   AND SRC.LTST_REC_IND = 'Y') 
