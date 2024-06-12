@@ -43,6 +43,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   czc_src_cdc:
-    +database: infa2dbt
-    +materialized: table
-    +schema: DBAALL
+    m_cdc_cc_user:
+      +database: infa2dbt
+      +materialized: table
+      +schema: DBAALL
