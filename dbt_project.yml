@@ -13,7 +13,7 @@ vars:
   dbownerprst: 'infa2dbt'
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'infa2dbt'
+profile: 'default'
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
@@ -43,8 +43,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   czc_src_cdc:
-    m_CDC_CC_USER:
-      +database: infa2dbt
-      +materialized: table
-      +schema: DBAALL
-    
+    +database: infa2dbt
+    +materialized: table
+    +schema: DBAALL
