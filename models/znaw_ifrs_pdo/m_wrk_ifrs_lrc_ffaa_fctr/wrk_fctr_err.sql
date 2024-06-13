@@ -3,7 +3,7 @@
 with
     sq_wrk_ifrs_lrc_ffaa_fctr as (
         select
-            SEQ_IFRS_LRC_FFAA_FCTR_PK.nextval as ifrs_lrc_ffaa_fctr_pk,
+            {{ var("dbownerwrk") }}.dbaall.SEQ_IFRS_LRC_FFAA_FCTR_PK.nextval as ifrs_lrc_ffaa_fctr_pk,
             upper(
                 md5(
                     rtrim(wilc.orgl_drvd_pol_yy)
@@ -94,7 +94,7 @@ with
             cl_lkd_yld_curve_crcy_cd,
             exec_seq,
             fctr,
-            {{ var("tbl_tech_nm") }} as o_tbl_tech_nm,
+            '{{ var("tbl_tech_nm") }}' as o_tbl_tech_nm,
             fctr_mltplr,
             fctr_adjt,
             eff_to_tistmp,
@@ -146,8 +146,8 @@ with
         from exp_set_val
     ),
     mplt_fctr_tlrnc_chk as (
-        --select * from {{ ref("mplt_fctr_tlrnc_chk") }}
-        select 1
+        
+        {{ mplt_fctr_tlrnc_chk() }}
     ),
     filtar_tolerance as (
         select

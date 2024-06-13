@@ -1,5 +1,4 @@
-{{ config(materialized="view") }}
-
+{% macro mplt_fctr_tlrnc_chk() -%}
 with
     lkp_wrk_fctr_tlrnc as (select * from {{ ref("lkp_wrk_fctr_tlrnc") }}),
     mplt_input as (
@@ -41,7 +40,7 @@ with
     ),
     exp_tlrnc_chk as (
         select
-            tbl_tech_nm,
+            mplt_input.tbl_tech_nm,
             fctr_typ,
             fctr as orig_fctr,
             fctr_typ1,
@@ -1083,3 +1082,6 @@ select
     out_ovrrdn_fctr14 as ovrrdn_fctr14,
     out_ovrrdn_flg14 as ovrrdn_flg14
 from exp_tlrnc_chk
+
+
+{%- endmacro %}
