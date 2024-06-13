@@ -1,5 +1,4 @@
-{{ config(materialized="ephemeral") }}
-
+{% macro mplt_fctr_tlrnc_chk() -%}
 with
     lkp_wrk_fctr_tlrnc as (select * from {{ ref("lkp_wrk_fctr_tlrnc") }}),
     mplt_input as (
@@ -36,12 +35,13 @@ with
             fctr_typ14,
             fctr14,
             fctr_typ15,
-            fctr15
-        from mapplet_cte  
+            fctr15,
+            rn
+                   from mapplet_cte  
     ),
     exp_tlrnc_chk as (
         select
-            tbl_tech_nm,
+            mplt_input.tbl_tech_nm,
             fctr_typ,
             fctr as orig_fctr,
             fctr_typ1,
@@ -72,6 +72,7 @@ with
             fctr13 as orig_fctr13,
             fctr_typ14,
             fctr14 as orig_fctr14,
+            rn,
             -- *INF*: :LKP.LKP_WRK_FCTR_TLRNC(FCTR_TYP,TBL_TECH_NM)
             lkp_wrk_fctr_tlrnc_fctr_typ_tbl_tech_nm.r_validation as o_return_lkp,
             -- *INF*: substr( o_return_lkp,1,instr(o_return_lkp , '~' ,1)-1)
@@ -945,82 +946,82 @@ with
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ_tbl_tech_nm.attr_tech_nm = fctr_typ
-            and lkp_wrk_fctr_tlrnc_fctr_typ_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ1_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ1_tbl_tech_nm.attr_tech_nm = fctr_typ1
-            and lkp_wrk_fctr_tlrnc_fctr_typ1_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ1_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ2_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ2_tbl_tech_nm.attr_tech_nm = fctr_typ2
-            and lkp_wrk_fctr_tlrnc_fctr_typ2_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ2_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ3_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ3_tbl_tech_nm.attr_tech_nm = fctr_typ3
-            and lkp_wrk_fctr_tlrnc_fctr_typ3_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ3_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ4_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ4_tbl_tech_nm.attr_tech_nm = fctr_typ4
-            and lkp_wrk_fctr_tlrnc_fctr_typ4_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ4_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ5_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ5_tbl_tech_nm.attr_tech_nm = fctr_typ5
-            and lkp_wrk_fctr_tlrnc_fctr_typ5_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ5_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ6_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ6_tbl_tech_nm.attr_tech_nm = fctr_typ6
-            and lkp_wrk_fctr_tlrnc_fctr_typ6_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ6_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ7_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ7_tbl_tech_nm.attr_tech_nm = fctr_typ7
-            and lkp_wrk_fctr_tlrnc_fctr_typ7_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ7_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ8_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ8_tbl_tech_nm.attr_tech_nm = fctr_typ8
-            and lkp_wrk_fctr_tlrnc_fctr_typ8_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ8_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ9_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ9_tbl_tech_nm.attr_tech_nm = fctr_typ9
-            and lkp_wrk_fctr_tlrnc_fctr_typ9_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ9_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ10_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ10_tbl_tech_nm.attr_tech_nm = fctr_typ10
-            and lkp_wrk_fctr_tlrnc_fctr_typ10_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ10_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ11_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ11_tbl_tech_nm.attr_tech_nm = fctr_typ11
-            and lkp_wrk_fctr_tlrnc_fctr_typ11_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ11_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ12_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ12_tbl_tech_nm.attr_tech_nm = fctr_typ12
-            and lkp_wrk_fctr_tlrnc_fctr_typ12_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ12_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ13_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ13_tbl_tech_nm.attr_tech_nm = fctr_typ13
-            and lkp_wrk_fctr_tlrnc_fctr_typ13_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ13_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ14_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ14_tbl_tech_nm.attr_tech_nm = fctr_typ14
-            and lkp_wrk_fctr_tlrnc_fctr_typ14_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ14_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
     )
 select
     o_subj_area as subj_area,
-    o_tbl_tech_nm as tbl_tech_nm,
+    o_tbl_tech_nm as tbl_tech_nm1,
     o_attr_tech_nm as attr_tech_nm,
     orig_fctr,
     out_ovrrdn_fctr as ovrrdn_fctr,
@@ -1081,5 +1082,9 @@ select
     o_attr_tech_nm14 as attr_tech_nm14,
     orig_fctr14,
     out_ovrrdn_fctr14 as ovrrdn_fctr14,
-    out_ovrrdn_flg14 as ovrrdn_flg14
+    out_ovrrdn_flg14 as ovrrdn_flg14,
+    rn
 from exp_tlrnc_chk
+
+
+{%- endmacro %}

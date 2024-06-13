@@ -11,6 +11,11 @@ vars:
   pop_info_id :  '101' 
   batch_id   :   '301'
   dbownerprst: 'infa2dbt'
+  tbl_tech_nm: 'WRK_ACTU_LRC_FINC_CMPNT_EXTRACT'
+  ml_finc_prd: '202310'
+  dbownerwrk: 'infa2dbt'
+  seq_acct_anchr_id: '100'
+
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'default'
@@ -43,8 +48,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   infa2dbt:
-    czc_src_cdc:
-      m_cdc_cc_user:
         +database: infa2dbt
         +materialized: table
         +schema: DBAALL

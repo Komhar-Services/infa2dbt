@@ -15,3 +15,9 @@ sources:
       - name: wrk_actu_lrc_cl_lkd_yc_intr_accrtn_fctr
       - name: wrk_ifrs_lrc_ffaa_pol_lvl_calc
       - name: wrk_ifrs_fctr_typ
+      - name: stg_sap_dtl
+      - name: pers
+      - name: typ
+      - name: acct_dervn
+      - name: mntry_acct
+
