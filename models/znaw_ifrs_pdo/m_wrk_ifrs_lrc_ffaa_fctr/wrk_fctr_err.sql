@@ -142,7 +142,8 @@ with
             null as fctr_typ14,
             null as fctr14,
             null as fctr_typ15,
-            null as fctr15
+            null as fctr15,
+            ROW_NUMBER() OVER(order by null) rn
         from exp_set_val
     ),
     mplt_fctr_tlrnc_chk as (
@@ -160,8 +161,9 @@ with
             mplt_fctr_tlrnc_chk.err_desc,
             exp_set_val.eff_to_tistmp as eff_to_tistmp2,
             exp_set_val.orgl_port_cd,
-            exp_set_val.eff_fm_tistmp
-        from exp_set_val
+            exp_set_val.eff_fm_tistmp,
+            rn
+        from exp_set_val,mplt_fctr_tlrnc_chk
         -- Manually join with mplt_FCTR_TLRNC_CHK
         where ovrrdn_flg = 'Y'
     ),
@@ -184,7 +186,8 @@ with
             {{ var("batch_id") }} as bat_id,
             current_timestamp as out_eff_fm_tistmp,
             orgl_port_cd,
-            eff_fm_tistmp
+            eff_fm_tistmp,
+            rn
         from filtar_tolerance
     )
 select
@@ -203,3 +206,4 @@ select
     updt_pop_info_id,
     bat_id
 from exp_set_err_val
+inner join mplt_fctr_tlrnc_chk using(rn)
