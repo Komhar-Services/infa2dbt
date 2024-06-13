@@ -166,7 +166,7 @@ with
         from exp_set_val
         inner join mplt_fctr_tlrnc_chk using(rn)
         -- Manually join with mplt_FCTR_TLRNC_CHK
-        where ovrrdn_flg = 'Y'
+        where ovrrdn_flg != 'Y'
     ), 
     exp_set_err_val as (
         select
