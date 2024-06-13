@@ -36,7 +36,7 @@ with
             fctr14,
             fctr_typ15,
             fctr15,
-            ROW_NUMBER() OVER(order by null) rn
+            rn
                    from mapplet_cte  
     ),
     exp_tlrnc_chk as (

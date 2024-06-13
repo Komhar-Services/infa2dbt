@@ -175,7 +175,7 @@ with
             attr_tech_nm,
             -1 as iter_id,
             to_timestamp(
-                {{ var("ml_finc_prd") }} || '01', 'yyyymmdd'
+                '{{ var("ml_finc_prd") }}' || '01', 'yyyymmdd'
             ) as finc_cl_perd_dt,
             orig_fctr,
             ovrrdn_fctr,
