@@ -944,77 +944,77 @@ with
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ_tbl_tech_nm.attr_tech_nm = fctr_typ
-            and lkp_wrk_fctr_tlrnc_fctr_typ_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ1_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ1_tbl_tech_nm.attr_tech_nm = fctr_typ1
-            and lkp_wrk_fctr_tlrnc_fctr_typ1_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ1_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ2_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ2_tbl_tech_nm.attr_tech_nm = fctr_typ2
-            and lkp_wrk_fctr_tlrnc_fctr_typ2_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ2_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ3_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ3_tbl_tech_nm.attr_tech_nm = fctr_typ3
-            and lkp_wrk_fctr_tlrnc_fctr_typ3_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ3_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ4_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ4_tbl_tech_nm.attr_tech_nm = fctr_typ4
-            and lkp_wrk_fctr_tlrnc_fctr_typ4_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ4_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ5_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ5_tbl_tech_nm.attr_tech_nm = fctr_typ5
-            and lkp_wrk_fctr_tlrnc_fctr_typ5_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ5_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ6_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ6_tbl_tech_nm.attr_tech_nm = fctr_typ6
-            and lkp_wrk_fctr_tlrnc_fctr_typ6_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ6_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ7_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ7_tbl_tech_nm.attr_tech_nm = fctr_typ7
-            and lkp_wrk_fctr_tlrnc_fctr_typ7_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ7_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ8_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ8_tbl_tech_nm.attr_tech_nm = fctr_typ8
-            and lkp_wrk_fctr_tlrnc_fctr_typ8_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ8_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ9_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ9_tbl_tech_nm.attr_tech_nm = fctr_typ9
-            and lkp_wrk_fctr_tlrnc_fctr_typ9_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ9_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ10_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ10_tbl_tech_nm.attr_tech_nm = fctr_typ10
-            and lkp_wrk_fctr_tlrnc_fctr_typ10_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ10_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ11_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ11_tbl_tech_nm.attr_tech_nm = fctr_typ11
-            and lkp_wrk_fctr_tlrnc_fctr_typ11_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ11_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ12_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ12_tbl_tech_nm.attr_tech_nm = fctr_typ12
-            and lkp_wrk_fctr_tlrnc_fctr_typ12_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ12_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ13_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ13_tbl_tech_nm.attr_tech_nm = fctr_typ13
-            and lkp_wrk_fctr_tlrnc_fctr_typ13_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ13_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
         left join
             lkp_wrk_fctr_tlrnc lkp_wrk_fctr_tlrnc_fctr_typ14_tbl_tech_nm
             on lkp_wrk_fctr_tlrnc_fctr_typ14_tbl_tech_nm.attr_tech_nm = fctr_typ14
-            and lkp_wrk_fctr_tlrnc_fctr_typ14_tbl_tech_nm.tbl_tech_nm = tbl_tech_nm
+            and lkp_wrk_fctr_tlrnc_fctr_typ14_tbl_tech_nm.tbl_tech_nm = mplt_input.tbl_tech_nm
 
     )
 select
