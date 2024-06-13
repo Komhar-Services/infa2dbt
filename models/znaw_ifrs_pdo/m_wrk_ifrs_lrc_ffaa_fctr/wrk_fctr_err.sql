@@ -146,7 +146,8 @@ with
         from exp_set_val
     ),
     mplt_fctr_tlrnc_chk as (
-        select * from {{ ref("mplt_fctr_tlrnc_chk") }}
+        --select * from {{ ref("mplt_fctr_tlrnc_chk") }}
+        select 1
     ),
     filtar_tolerance as (
         select

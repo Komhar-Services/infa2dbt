@@ -1,4 +1,4 @@
-{{ config(materialized="ephemeral") }}
+{{ config(materialized="view") }}
 
 with
     lkp_wrk_fctr_tlrnc as (select * from {{ ref("lkp_wrk_fctr_tlrnc") }}),
