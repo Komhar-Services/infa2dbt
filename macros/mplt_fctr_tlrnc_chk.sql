@@ -35,8 +35,9 @@ with
             fctr_typ14,
             fctr14,
             fctr_typ15,
-            fctr15
-        from mapplet_cte  
+            fctr15,
+            ROW_NUMBER() OVER(order by null) rn
+                   from mapplet_cte  
     ),
     exp_tlrnc_chk as (
         select
@@ -71,6 +72,7 @@ with
             fctr13 as orig_fctr13,
             fctr_typ14,
             fctr14 as orig_fctr14,
+            rn,
             -- *INF*: :LKP.LKP_WRK_FCTR_TLRNC(FCTR_TYP,TBL_TECH_NM)
             lkp_wrk_fctr_tlrnc_fctr_typ_tbl_tech_nm.r_validation as o_return_lkp,
             -- *INF*: substr( o_return_lkp,1,instr(o_return_lkp , '~' ,1)-1)
@@ -1019,7 +1021,7 @@ with
     )
 select
     o_subj_area as subj_area,
-    o_tbl_tech_nm as tbl_tech_nm,
+    o_tbl_tech_nm as tbl_tech_nm1,
     o_attr_tech_nm as attr_tech_nm,
     orig_fctr,
     out_ovrrdn_fctr as ovrrdn_fctr,
@@ -1080,7 +1082,8 @@ select
     o_attr_tech_nm14 as attr_tech_nm14,
     orig_fctr14,
     out_ovrrdn_fctr14 as ovrrdn_fctr14,
-    out_ovrrdn_flg14 as ovrrdn_flg14
+    out_ovrrdn_flg14 as ovrrdn_flg14,
+    rn
 from exp_tlrnc_chk
 
 
