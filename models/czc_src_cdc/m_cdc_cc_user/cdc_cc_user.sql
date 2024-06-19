@@ -1,16 +1,11 @@
-{{ config(
-    alias="cdc_cc_user",
-    materialized="incremental",
-    post_hook=[{"sql": "UPDATE {{ var('dbownerprst') }}.dbaall.CDC_CC_USER  AS TGT
-                SET LTST_REC_IND = 'N'
-                WHERE TGT.ID IN (SELECT ID FROM {{ var('dbownerprst') }}.dbaall.CDC_CC_USER AS SRC
-                                  WHERE TGT.ID = SRC.ID 
-                                  AND SRC.BAT_ID = {{ var('batch_id') }} 
-                                  AND SRC.LTST_REC_IND = 'Y') 
-                AND TGT.BAT_ID <> {{ var('batch_id') }} 
-                AND TGT.LTST_REC_IND = 'Y';"}]
-    ) 
+{{
+	config(
+		materialized = "incremental",
+post_hook = ["UPDATE {{ var('dbownerprst') }}.dbaall.CDC_CC_USER TGT SET  LTST_REC_IND = 'N' where  TGT.ID in (select ID from {{ var('dbownerprst') }}.dbaall.CDC_CC_USER SRC where TGT.ID=SRC.ID AND SRC.BAT_ID = {{ var('batch_id') }} and SRC.LTST_REC_IND = 'Y') and TGT.BAT_ID <> {{ var('batch_id') }} and TGT.LTST_REC_IND = 'Y'"]
+	)
 }}
+
+
 with
     r_ulkp_wpcd_eff_fm_tistmp as (select * from {{ ref("r_ulkp_wpcd_eff_fm_tistmp") }}),
     cc_user as (select * from {{ source("dbaall", "cc_user") }}),
