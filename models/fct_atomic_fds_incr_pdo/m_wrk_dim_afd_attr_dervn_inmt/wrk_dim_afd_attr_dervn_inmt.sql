@@ -647,7 +647,7 @@ with
             updt_pop_info_id,
             bat_id
         from sq_wrk_dim_afd_attr_dervn_inmt
-    ),
+    )
 select
     actu_and_finc_dervn_alt_busn_key,
     ins_pol_and_rlup_alt_busn_key,

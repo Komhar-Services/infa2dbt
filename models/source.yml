@@ -20,5 +20,5 @@ sources:
       - name: typ
       - name: acct_dervn
       - name: mntry_acct
-      - name: delta_dim_actu_and_finc_dervn_mm
+      - name: dim_actu_and_finc_dervn_mm
 
