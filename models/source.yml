@@ -21,4 +21,8 @@ sources:
       - name: acct_dervn
       - name: mntry_acct
       - name: dim_actu_and_finc_dervn_mm
+      - name: geog_area
+      - name: stg_pol_contr
+      - name: stg_acty_log
+      - name: stg_pol_covg
 
