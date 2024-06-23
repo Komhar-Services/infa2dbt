@@ -25,4 +25,6 @@ sources:
       - name: stg_pol_contr
       - name: stg_acty_log
       - name: stg_pol_covg
+      - name: stg_pol_lvl_covg
+      - name: cml_agmt
 
