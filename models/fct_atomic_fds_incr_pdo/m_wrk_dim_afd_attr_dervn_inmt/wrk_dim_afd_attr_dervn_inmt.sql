@@ -5,7 +5,6 @@
 }}
 
 with
-    ,
     sq_wrk_dim_afd_attr_dervn_inmt as (
         with
             c_input as (
@@ -17,7 +16,7 @@ with
                         case
                             when wafp.org_gp_cd = 'UNK' then 'null' else wafp.org_gp_cd
                         end
-                    ) as ins_typ_inp_unq_bnry_id,
+                    ) as ins_typ_inp_unq_bnry_id_1,
                     rtrim(
                         substr(
                             case
@@ -461,7 +460,7 @@ with
                     || rtrim(c_input.rvrs_flw_busn_ind)
                     || rtrim(c_input.sap_co_cd)
                 )
-            ) as ins_typ_inp_unq_bnry_id,
+            ) as ins_typ_inp_unq_bnry_id_2,
             upper(
                 md5(
                     rtrim(c_input.org_gp_cd)
