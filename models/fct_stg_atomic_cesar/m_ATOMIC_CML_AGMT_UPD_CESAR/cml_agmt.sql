@@ -4,7 +4,7 @@
 	)
 }}
 	
-with shortcut_to_r_seq_cml_agmt_id as (select shortcut_to_r_seq_cml_agmt_id.nextval),
+with shortcut_to_r_seq_cml_agmt_id as (select shortcut_to_r_seq_cml_agmt_id.nextval)
 select
     shortcut_to_r_seq_cml_agmt_id.nextval as cml_agmt_id,
     agmt_anchr_id as agmt_anchr_id,
@@ -78,4 +78,4 @@ select
     zi_pol_sys_contr_id3 as zi_pol_sys_contr_id,
     genl_ln_of_busn_cd3 as genl_ln_of_busn_cd,
     frgn_prdr_cd3 as frgn_prdr_cd
-from exp_set_val_cml_agmt
+   from exp_set_val_cml_agmt

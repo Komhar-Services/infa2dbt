@@ -27,5 +27,19 @@ sources:
       - name: stg_pol_covg
       - name: stg_pol_lvl_covg
       - name: cml_agmt
+      - name: dim_assm_cede_cmtn_reins_brdg_mm  
+      - name : work_actu_and_fin_pol 
+      - name : dim_dir_assm_cede
+      - name : dim_covg_lob_cls_late_actv
+      - name : dim_covg_lob
+      - name : wrk_dim_int_org_actu_adjt
+      - name : dim_insr
+      - name : dim_mlt_prl
+      - name : dim_exc_late_actv
+      - name : dim_retro_ratg_late_actv
+      - name : dim_st 
+      - name : dim_cmtn_agmt 
+      - name : wrk_factls_ins_pol_and_rlup_actu_adjt
+      - name : dim_clr_hous_pol_catg_late_actv
   
 

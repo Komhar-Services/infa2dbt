@@ -183,7 +183,7 @@ with
             genl_ln_of_busn_cd3,
             frgn_prdr_cd3
         from fil_chng_cml_agmt
-    ),
+    )
 select
     cml_agmt_id as surrogate_key,
     out_actv_rec_ind as actv_rec_ind,

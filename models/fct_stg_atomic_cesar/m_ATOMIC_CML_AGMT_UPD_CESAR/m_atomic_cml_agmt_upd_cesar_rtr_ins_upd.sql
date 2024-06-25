@@ -4,8 +4,6 @@
 	)
 }}
 
-
-m_atomic_cml_agmt_upd_cesar_rtr_ins_upd
 with
     ulkp_work_prcg_cyc_dt as (select * from {{ ref("ulkp_work_prcg_cyc_dt") }}),
     stg_pol_lvl_covg as (select * from {{ source("dbaall","stg_pol_lvl_covg") }}),

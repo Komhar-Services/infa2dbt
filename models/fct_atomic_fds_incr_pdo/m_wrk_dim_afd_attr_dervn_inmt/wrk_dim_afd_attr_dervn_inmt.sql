@@ -371,9 +371,9 @@ with
                     ) as sub_ln,
                     rtrim(wafp.low_lvl_org_id) as susp_ind,
                     rtrim(fdi.opert_co_cd) as ult_finc_reins_gp_cd
-                from dim_actu_and_finc_dervn_mm as dafd  /* 7107964487 */
-                inner join
-                    dim_assm_cede_cmtn_reins_brdg_mm as daccr
+                from {{ source('dbaall','dim_actu_and_finc_dervn_mm') }} as dafd  /* 7107964487 */
+                inner join {{ source('dbaall','dim_assm_cede_cmtn_reins_brdg_mm') }}
+                     as daccr
                     on dafd.cede_reins_agmt_alt_busn_key
                     = daccr.cede_reins_agmt_alt_busn_key
                     and dafd.assm_reins_agmt_alt_busn_key
@@ -381,66 +381,66 @@ with
                     and dafd.cmtn_agmt_alt_busn_key = daccr.cmtn_agmt_alt_busn_key
                     and daccr.late_actv_rec_ind = 'Y'
                     and dafd.late_actv_rec_ind = 'Y'
-                inner join
-                    work_actu_and_fin_pol as wafp
+                inner join {{ source('dbaall','work_actu_and_fin_pol') }}
+                     as wafp
                     on dafd.ins_pol_and_rlup_alt_busn_key
                     = wafp.ins_pol_and_rlup_alt_busn_key
                     and wafp.late_actv_rec_ind = 'Y'
-                inner join
-                    dim_dir_assm_cede as ddac
+                inner join {{ source('dbaall','dim_dir_assm_cede') }}
+                     as ddac
                     on ddac.dir_assm_cede_alt_busn_key = dafd.dir_assm_cede_alt_busn_key
                     and ddac.late_actv_rec_ind = 'Y'
-                inner join
-                    dim_covg_lob_cls_late_actv as dclc
+                inner join {{ source('dbaall','dim_covg_lob_cls_late_actv') }}
+                     as dclc
                     on dafd.covg_lob_cls_alt_busn_key = dclc.covg_lob_cls_alt_busn_key
                     and dclc.late_actv_rec_ind = 'Y'
-                inner join
-                    dim_covg_lob as dcl
+                inner join {{ source('dbaall','dim_covg_lob') }}
+                     as dcl
                     on dcl.covg_lob_alt_busn_key = dclc.covg_lob_alt_busn_key
                     and dcl.late_actv_rec_ind = 'Y'
                 inner join
                     dim_covg_lob as fdcl
                     on dafd.finc_covg_lob_alt_busn_key = fdcl.covg_lob_alt_busn_key
                     and fdcl.late_actv_rec_ind = 'Y'
-                inner join
-                    wrk_dim_int_org_actu_adjt as dio
+                inner join {{ source('dbaall','wrk_dim_int_org_actu_adjt') }}
+                     as dio
                     on dio.low_lvl_org_id = wafp.low_lvl_org_id
                     and dio.late_actv_rec_ind = 'Y'
-                inner join
-                    dim_insr as di
+                inner join {{ source('dbaall','dim_insr') }}
+                     as di
                     on di.insr_alt_busn_key = dafd.insr_alt_busn_key
                     and di.late_actv_rec_ind = 'Y'
                 inner join
                     dim_insr as fdi
                     on dafd.finc_insr_alt_busn_key = fdi.insr_alt_busn_key
                     and fdi.late_actv_rec_ind = 'Y'
-                inner join
-                    dim_mlt_prl as dmp
+                inner join {{ source('dbaall','dim_mlt_prl') }}
+                     as dmp
                     on dmp.mlt_prl_alt_busn_key = dafd.mlt_prl_alt_busn_key
                     and dmp.late_actv_rec_ind = 'Y'
-                inner join
-                    dim_exc_late_actv as de
+                inner join {{ source('dbaall','dim_exc_late_actv') }}
+                     as de
                     on de.exc_alt_busn_key = dafd.exc_alt_busn_key
                     and de.late_actv_rec_ind = 'Y'
-                inner join
-                    dim_retro_ratg_late_actv as drr
+                inner join {{ source('dbaall','dim_retro_ratg_late_actv') }}
+                     as drr
                     on drr.retro_ratg_alt_busn_key = dafd.retro_ratg_alt_busn_key
                     and drr.late_actv_rec_ind = 'Y'
-                inner join
-                    dim_st as ds
+                inner join {{ source('dbaall','dim_st') }}
+                     as ds
                     on ds.st_alt_busn_key = dafd.st_alt_busn_key
                     and ds.late_actv_rec_ind = 'Y'
-                inner join
-                    dim_cmtn_agmt as dca
+                inner join {{ source('dbaall','dim_cmtn_agmt') }}
+                     as dca
                     on dca.cmtn_agmt_alt_busn_key = dafd.cmtn_agmt_alt_busn_key
                     and dca.late_actv_rec_ind = 'Y'
-                inner join
-                    wrk_factls_ins_pol_and_rlup_actu_adjt as fipr
+                inner join {{ source('dbaall','wrk_factls_ins_pol_and_rlup_actu_adjt') }}
+                     as fipr
                     on dafd.ins_pol_and_rlup_alt_busn_key
                     = fipr.ins_pol_and_rlup_alt_busn_key
                     and fipr.late_actv_rec_ind = 'Y'
-                inner join
-                    dim_clr_hous_pol_catg_late_actv as dchpc
+                inner join {{ source('dbaall','dim_clr_hous_pol_catg_late_actv') }}
+                     as dchpc
                     on fipr.clr_hous_pol_catg_alt_busn_key
                     = dchpc.clr_hous_pol_catg_alt_busn_key
                     and dchpc.late_actv_rec_ind = 'Y'
