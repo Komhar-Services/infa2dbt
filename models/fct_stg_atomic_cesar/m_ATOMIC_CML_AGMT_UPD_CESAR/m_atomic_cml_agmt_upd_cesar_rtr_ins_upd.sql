@@ -270,25 +270,20 @@ with
                 'null',
                 in_src_mstr_pol_nbr
             ) as v_src_mstr_pol_nbr,
-            -- *INF*: IIF(ISNULL(in_SRC_PYMT_PLN_CD) OR
-            -- LTRIM(RTRIM(in_SRC_PYMT_PLN_CD))='','null',in_SRC_PYMT_PLN_CD)
             iff(
                 in_src_pymt_pln_cd is null or ltrim(rtrim(in_src_pymt_pln_cd)) = '',
                 'null',
                 in_src_pymt_pln_cd
             ) as v_src_pymt_pln_cd,
-            -- *INF*: IIF(ISNULL(in_SRC_EXT_RPT_PERD_DT),
-            -- TO_DATE('2999-12-31',
-            -- 'YYYY-MM-DD'),in_SRC_EXT_RPT_PERD_DT)
+            
             iff(
                 in_src_ext_rpt_perd_dt is null,
                 to_timestamp('2999-12-31', 'YYYY-MM-DD'),
                 in_src_ext_rpt_perd_dt
             ) as v_src_ext_rpt_perd_dt,
-            -- *INF*: :LKP.ULKP_WORK_PRCG_CYC_DT('Y')
+       
             ulkp_work_prcg_cyc_dt__y.pst_dt as v_wpcd_src_pst_dt,
-            -- *INF*: IIF(SRC_MSTR_POL_CD='M' AND
-            -- ltrim(rtrim(in_POL_SYM_CD))='WC','CMWC',IIF(SRC_MSTR_POL_CD='S','CSWC',IIF(SRC_MSTR_POL_CD='C','CERT',IIF(SRC_MSTR_POL_CD='M' AND ltrim(rtrim(in_POL_SYM_CD))<>'WC','MCMM','null'))))
+            
             iff(
                 src_mstr_pol_cd = 'M' and ltrim(rtrim(in_pol_sym_cd)) = 'WC',
                 'CMWC',
@@ -307,10 +302,7 @@ with
                     )
                 )
             ) as v_mstr_pol_cd,
-            -- *INF*: IIF(ISNULL(LTRIM(RTRIM(SRC_WC_RATG_BAS_CD))) OR
-            -- LTRIM(RTRIM(SRC_WC_RATG_BAS_CD)) ='null' or
-            -- length(LTRIM(RTRIM(SRC_WC_RATG_BAS_CD)) )=0 ,'null' ,
-            -- LTRIM(RTRIM(SRC_WC_RATG_BAS_CD))  )
+            
             iff(
                 ltrim(rtrim(src_wc_ratg_bas_cd)) is null
                 or ltrim(rtrim(src_wc_ratg_bas_cd)) = 'null'
@@ -318,25 +310,22 @@ with
                 'null',
                 ltrim(rtrim(src_wc_ratg_bas_cd))
             ) as v_src_wc_ratg_bas_cd,
-            -- *INF*: IIF((ISNULL(SRC_IPS_CONTR_ID) OR
-            -- LTRIM(RTRIM(SRC_IPS_CONTR_ID))=''),'null',SRC_IPS_CONTR_ID)
+          
             iff(
                 (src_ips_contr_id is null or ltrim(rtrim(src_ips_contr_id)) = ''),
                 'null',
                 src_ips_contr_id
             ) as v_ips_contr_id,
-            -- *INF*: IIF(ISNULL(SRC_PTNR_CTRY_POL_NBR) OR
-            -- LTRIM(RTRIM(SRC_PTNR_CTRY_POL_NBR))='','null',SRC_PTNR_CTRY_POL_NBR)
+ 
             iff(
                 src_ptnr_ctry_pol_nbr is null
                 or ltrim(rtrim(src_ptnr_ctry_pol_nbr)) = '',
                 'null',
                 src_ptnr_ctry_pol_nbr
             ) as v_ptnr_ctry_pol_nbr,
-            -- *INF*: IIF(ISNULL(SRC_PLC_ANCHR_ID) ,234151,SRC_PLC_ANCHR_ID)
+            
             iff(src_plc_anchr_id is null, 234151, src_plc_anchr_id) as v_plc_anchr_id,
-            -- *INF*: IIF(ISNULL(SRC_PTNR_CTRY_POL_ID) OR
-            -- LTRIM(RTRIM(SRC_PTNR_CTRY_POL_ID))='','null',SRC_PTNR_CTRY_POL_ID)
+            
             iff(
                 src_ptnr_ctry_pol_id is null or ltrim(rtrim(src_ptnr_ctry_pol_id)) = '',
                 'null',

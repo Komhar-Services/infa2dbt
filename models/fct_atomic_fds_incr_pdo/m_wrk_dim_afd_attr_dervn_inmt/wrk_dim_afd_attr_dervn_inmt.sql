@@ -398,8 +398,8 @@ with
                      as dcl
                     on dcl.covg_lob_alt_busn_key = dclc.covg_lob_alt_busn_key
                     and dcl.late_actv_rec_ind = 'Y'
-                inner join
-                    dim_covg_lob as fdcl
+                inner join {{ source('dbaall','dim_covg_lob') }}
+                     as fdcl
                     on dafd.finc_covg_lob_alt_busn_key = fdcl.covg_lob_alt_busn_key
                     and fdcl.late_actv_rec_ind = 'Y'
                 inner join {{ source('dbaall','wrk_dim_int_org_actu_adjt') }}
@@ -410,8 +410,8 @@ with
                      as di
                     on di.insr_alt_busn_key = dafd.insr_alt_busn_key
                     and di.late_actv_rec_ind = 'Y'
-                inner join
-                    dim_insr as fdi
+                inner join {{ source('dbaall','dim_insr') }}
+                     as fdi
                     on dafd.finc_insr_alt_busn_key = fdi.insr_alt_busn_key
                     and fdi.late_actv_rec_ind = 'Y'
                 inner join {{ source('dbaall','dim_mlt_prl') }}
