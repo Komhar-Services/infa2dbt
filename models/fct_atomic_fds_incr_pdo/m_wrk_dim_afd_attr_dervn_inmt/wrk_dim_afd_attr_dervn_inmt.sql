@@ -9,6 +9,10 @@ with
         with
             c_input as (
                 select
+                NULL AS ULT_REINS_AGMT_NBR,
+                NULL AS ULT_IBNR_FAM_REINS_GP_CD,
+                NULL AS UNCLCT_DED_POL_IND,
+                NULL AS UNDG_PGM_CD,
                     dafd.actu_and_finc_dervn_alt_busn_key
                     as actu_and_finc_dervn_alt_busn_key,
                     dafd.ins_pol_and_rlup_alt_busn_key as ins_pol_and_rlup_alt_busn_key,
@@ -579,11 +583,12 @@ with
             c_input.ult_reins_agmt_nbr as ult_reins_agmt_nbr,
             c_input.unclct_ded_pol_ind as unclct_ded_pol_ind,
             c_input.undg_pgm_cd as undg_pgm_cd,
-            now() as eff_fm_tistmp,
+            CURRENT_TIMESTAMP() as eff_fm_tistmp,
             '2999-12-31' as eff_to_tistmp,
             {{ var("pop_info_id") }} as pop_info_id,
             {{ var("pop_info_id") }} as updt_pop_info_id,
-            {{ var("batch_id") }} as bat_id
+            {{ var("batch_id") }} as bat_id,
+            NULL AS INS_TYP_INP_UNQ_BNRY_ID
         from c_input
     ),
     exp_pass_thru as (
